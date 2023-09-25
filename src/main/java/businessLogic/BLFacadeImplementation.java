@@ -30,14 +30,15 @@ import exceptions.QuoteAlreadyExist;
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
+	private static final String INITIALIZE = "initialize";
 	DataAccess dbManager;
 
 	public BLFacadeImplementation()  {		
 		System.out.println("Creating BLFacadeImplementation instance");
 		ConfigXML c=ConfigXML.getInstance();
 		
-		if (c.getDataBaseOpenMode().equals("initialize")) {
-		    dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
+		if (c.getDataBaseOpenMode().equals(INITIALIZE)) {
+		    dbManager=new DataAccess(c.getDataBaseOpenMode().equals(INITIALIZE));
 		    dbManager.initializeDB();
 		    } else
 		     dbManager=new DataAccess();
@@ -51,7 +52,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
 		ConfigXML c=ConfigXML.getInstance();
 		
-		if (c.getDataBaseOpenMode().equals("initialize")) {
+		if (c.getDataBaseOpenMode().equals(INITIALIZE)) {
 			da.open(true);
 			da.initializeDB();			
 			da.close();
@@ -216,14 +217,7 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.close();
     	return a;
     }
-    /*
-    @WebMethod	
-    public List<ApustuaContainer> findApustuaContainer(User u){
-    	dbManager.open(false);
-    	List<ApustuaContainer> a = dbManager.findApustuaContainer(u); 
-    	dbManager.close();
-    	return a; 
-    }*/
+
     @WebMethod	
     public void apustuaEzabatu(Registered user1, ApustuAnitza apustua) {
     	dbManager.open(false);

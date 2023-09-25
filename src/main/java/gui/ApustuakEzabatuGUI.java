@@ -26,7 +26,7 @@ public class ApustuakEzabatuGUI extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private Registered user;
 
-	private JComboBox comboBox;
+	private JComboBox<ApustuAnitza> comboBox;
 	//DefaultComboBoxModel<ApustuaContainer> modelApustua = new DefaultComboBoxModel<ApustuaContainer>();
 
 	private JButton jButtonClose;
@@ -49,17 +49,13 @@ public class ApustuakEzabatuGUI extends JFrame{
 		lblComboBox.setBounds(186, 62, 215, 21);
 		getContentPane().add(lblComboBox);
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<ApustuAnitza>();
 		comboBox.setBounds(10, 105, 570, 21);
 		comboBox.setModel(listApustuak);
 		for(ApustuAnitza ap : businessLogic.findApustuAnitza(user)){
 			amaituta=false;
 			if(ap.getEgoera().equals("jokoan")) {
-				for(Apustua a: ap.getApustuak()) {
-					if(new Date().compareTo(businessLogic.findEventFromApustua(a).getEventDate())>=0) {
-						amaituta=true;
-					}
-				}	
+				extracted(ap);	
 				if(!amaituta) {
 					listApustuak.addElement(ap);
 				}
@@ -75,7 +71,7 @@ public class ApustuakEzabatuGUI extends JFrame{
 		jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jButtonClose_actionPerformed(e);
+				jButtonClose_actionPerformed();
 			}
 		});
 		jButtonClose.setBounds(347, 245, 101, 33);
@@ -95,23 +91,23 @@ public class ApustuakEzabatuGUI extends JFrame{
 				businessLogic.apustuaEzabatu(user, apustua);
 				
 				listApustuak.removeAllElements();
-				for(ApustuAnitza ap : businessLogic.findApustuAnitza(user)){
-					amaituta=false;
-					if(ap.getEgoera().equals("jokoan")) {
-						for(Apustua a: ap.getApustuak()) {
-							if(new Date().compareTo(businessLogic.findEventFromApustua(a).getEventDate())>=0) {
-								amaituta=true;
-							}
-						}	
-						if(!amaituta) {
-							listApustuak.addElement(ap);
-						}
-					}
-				}
+				extracted2();
 				if(listApustuak.getSize()==0) {
 					jButtonEzabatu.setEnabled(false); 
 				}else {
 					jButtonEzabatu.setEnabled(true);
+				}
+			}
+
+			private void extracted2() {
+				for(ApustuAnitza ap : businessLogic.findApustuAnitza(user)){
+					amaituta=false;
+					if(ap.getEgoera().equals("jokoan")) {
+						extracted(ap);	
+						if(!amaituta) {
+							listApustuak.addElement(ap);
+						}
+					}
 				}
 			}
 		});
@@ -120,8 +116,16 @@ public class ApustuakEzabatuGUI extends JFrame{
 		this.setSize(new Dimension(604, 370));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ApustuaEzabatu"));
 	}
+
+	private void extracted(ApustuAnitza ap) {
+		for(Apustua a: ap.getApustuak()) {
+			if(new Date().compareTo(businessLogic.findEventFromApustua(a).getEventDate())>=0) {
+				amaituta=true;
+			}
+		}
+	}
 	
-	private void jButtonClose_actionPerformed(ActionEvent e) {
+	private void jButtonClose_actionPerformed() {
 		this.setVisible(false);
 	}
 	

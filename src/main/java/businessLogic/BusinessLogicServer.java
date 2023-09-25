@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import configuration.ConfigXML;
 
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.xml.ws.Endpoint;
 
 
@@ -40,7 +41,7 @@ public class BusinessLogicServer extends JDialog {
 	public static void main(String[] args) {
 		try {
 			BusinessLogicServer dialog = new BusinessLogicServer();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,35 +62,8 @@ public class BusinessLogicServer extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
-		{
-			textArea = new JTextArea();
-			contentPanel.add(textArea);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						textArea.append("\n\n\nClosing the server... ");
-					    
-							//server.close();
-						
-						System.exit(1);
-					}
-				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
+		getcontentPanel();
+		createcontentpanel();
 		
 		ConfigXML c=ConfigXML.getInstance();
 
@@ -126,6 +100,39 @@ public class BusinessLogicServer extends JDialog {
 		  }
 
 	  }
+	}
+
+
+	private void createcontentpanel() {
+		JPanel buttonPane = new JPanel();
+		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		getContentPane().add(buttonPane, BorderLayout.SOUTH);
+		{
+			JButton okButton = new JButton("OK");
+			okButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					textArea.append("\n\n\nClosing the server... ");
+				    
+						//server.close();
+					
+					System.exit(1);
+				}
+			});
+			okButton.setActionCommand("OK");
+			buttonPane.add(okButton);
+			getRootPane().setDefaultButton(okButton);
+		}
+		{
+			JButton cancelButton = new JButton("Cancel");
+			cancelButton.setActionCommand("Cancel");
+			buttonPane.add(cancelButton);
+		}
+	}
+
+
+	private void getcontentPanel() {
+		textArea = new JTextArea();
+		contentPanel.add(textArea);
 	}
 }
 

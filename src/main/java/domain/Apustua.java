@@ -93,4 +93,6 @@ public class Apustua implements Serializable{
 		}
 		return this.getApostuaNumber().equals(a.getApostuaNumber()); 
 	}
+	 @Override
+	  public int hashCode() { return this.apustuaNumber;}
 }

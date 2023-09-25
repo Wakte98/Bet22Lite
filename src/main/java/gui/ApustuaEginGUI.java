@@ -223,38 +223,42 @@ public class ApustuaEginGUI extends JFrame{
 				Double zenb; 
 				try {
 					zenb = Double.parseDouble(textua);
-					if(zenb>0.0) {
-						if(zenb>=maxMinBet) {
-							Boolean b = businessLogic.ApustuaEgin(user, quoteVec, zenb, -1);
-							quoteList= new DefaultListModel<Quote>();
-							quoteVec= new Vector<Quote>();
-							list.setModel(quoteList);
-							if(b) {
-								lblError.setVisible(true); 
-								lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaCorrect"));
-								jButtonFinish.setEnabled(false);
-								btnApustuaGehitu.setVisible(true);
-								jButtonCreate.setVisible(false);
-								textFieldDiruKop.setVisible(false);
-								//jLabelDiruKopurua.setVisible(false);
-							}else {
-								lblError.setVisible(true); 
-								lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError1")); 
-							}							
-						}else {
-							lblError.setVisible(true); 
-							lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError4")+ " " + maxMinBet); 
-						}
-					}else {
-						lblError.setVisible(true); 
-						lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber")); 
-					}
+					zenbmayor0(zenb);
 					
 				}catch(NumberFormatException e1) {
 					lblError.setVisible(true); 
 					lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber"));
 				}
 				
+			}
+
+			private void zenbmayor0(Double zenb) {
+				if(zenb>0.0) {
+					if(zenb>=maxMinBet) {
+						Boolean b = businessLogic.ApustuaEgin(user, quoteVec, zenb, -1);
+						quoteList= new DefaultListModel<Quote>();
+						quoteVec= new Vector<Quote>();
+						list.setModel(quoteList);
+						if(b) {
+							lblError.setVisible(true); 
+							lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaCorrect"));
+							jButtonFinish.setEnabled(false);
+							btnApustuaGehitu.setVisible(true);
+							jButtonCreate.setVisible(false);
+							textFieldDiruKop.setVisible(false);
+							//jLabelDiruKopurua.setVisible(false);
+						}else {
+							lblError.setVisible(true); 
+							lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError1")); 
+						}							
+					}else {
+						lblError.setVisible(true); 
+						lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError4")+ " " + maxMinBet); 
+					}
+				}else {
+					lblError.setVisible(true); 
+					lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber")); 
+				}
 			}
 		});
 		jButtonCreate.setBounds(40, 360, 148, 51);
@@ -306,26 +310,30 @@ public class ApustuaEginGUI extends JFrame{
 				boolean comp = false;
 				
 				if(new Date().compareTo(businessLogic.findEvent(q).getEventDate())<0) {
-					for(Quote quo: quoteVec) {
-						if(businessLogic.findQuestionFromQuote(quo).getQuestionNumber().equals(businessLogic.findQuestionFromQuote(q).getQuestionNumber())) {
-							comp=true;
-						}
-					}
-					if(!comp) {
-						quoteList.addElement(q);
-						quoteVec.add(q);
-						if(maxMinBet<businessLogic.findQuestionFromQuote(q).getBetMinimum()) {
-							maxMinBet=businessLogic.findQuestionFromQuote(q).getBetMinimum();
-						}
-						jButtonFinish.setEnabled(true);
-						lblError.setVisible(false);
-					}else {
-						lblError.setVisible(true);
-						lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError2"));
-					}
+					enableeventquestion(q, comp);
 				}else {
 					lblError.setVisible(true);
 					lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError3"));
+				}
+			}
+
+			private void enableeventquestion(Quote q, boolean comp) {
+				for(Quote quo: quoteVec) {
+					if(businessLogic.findQuestionFromQuote(quo).getQuestionNumber().equals(businessLogic.findQuestionFromQuote(q).getQuestionNumber())) {
+						comp=true;
+					}
+				}
+				if(!comp) {
+					quoteList.addElement(q);
+					quoteVec.add(q);
+					if(maxMinBet<businessLogic.findQuestionFromQuote(q).getBetMinimum()) {
+						maxMinBet=businessLogic.findQuestionFromQuote(q).getBetMinimum();
+					}
+					jButtonFinish.setEnabled(true);
+					lblError.setVisible(false);
+				}else {
+					lblError.setVisible(true);
+					lblError.setText(ResourceBundle.getBundle("Etiquetas").getString("ApustuaError2"));
 				}
 			}
 		});
