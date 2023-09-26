@@ -1,0 +1,4 @@
+domain.ApustuAnitza#addKirolaKant()V
+==
+getApustuKantitatea domain.Sport#getApustuKantitatea()Ljava/lang/Integer;
+setApustuKantitatea domain.Sport#setApustuKantitatea(Ljava/lang/Integer;)V

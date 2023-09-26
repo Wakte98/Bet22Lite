@@ -1,0 +1,3 @@
+gui.ApustuakEzabatuGUI#jButtonClose_actionPerformed()V
+==
+setVisible java.awt.Window#setVisible(Z)V

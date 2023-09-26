@@ -1,0 +1,36 @@
+
+WbusinessLogic.BLFacadeImplementation#getEventsMonth(Ljava/util/Date;)Ljava/util/Vector;n
+d/C:/Users/inaxi/eclipse-workspace2/Bet22Lite/src/main/java/businessLogic/BLFacadeImplementation.javas  s(."startingBlock*÷
+startingBlocks. s(9
+}
+s s(
+%0"
+__annotate*)
+
+__unknown_file (
+	WebMethod*4
+
+__unknown_file (
+
+datejava.util.DateV
+T
+s4 s(8
+datejava.util.Date"__annotation*"
+
+__unknown_file (
+
+%0*
+1*‰
+1t t(Q
+O
+u u(5
+datesjava.util.Vector"__id*"
+
+__unknown_file (
+"""'
+w w(
+
+datesjava.util.Vector:"
+s/ s(8
+datejava.util.DateB(&
+$businessLogic.BLFacadeImplementationH

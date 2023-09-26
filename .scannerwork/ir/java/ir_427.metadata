@@ -1,0 +1,5 @@
+businessLogic.BusinessLogicServer#getcontentPanel()V
+javax.swing.JTextArea#<init>()V
+javax.swing.JTextArea#instance-init#
+==
+add java.awt.Container#add(Ljava/awt/Component;)Ljava/awt/Component;
