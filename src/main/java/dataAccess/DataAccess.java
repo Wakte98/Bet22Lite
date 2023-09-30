@@ -907,7 +907,7 @@ public void open(boolean initializeMode){
 		return Aquery.getResultList();
 	}
 	public List<ApustuAnitza> findApustuAnitza(Registered u){
-		Registered user = (Registered) db.find(Registered.class, u.getUsername()); 
+		db.find(Registered.class, u.getUsername()); 
 		TypedQuery<ApustuAnitza> Aquery = db.createQuery("SELECT aa FROM ApustuAnitza aa WHERE aa.getUser().getUsername() =?1 ", ApustuAnitza.class);
 		Aquery.setParameter(1, u.getUsername());
 		return Aquery.getResultList();
@@ -984,7 +984,7 @@ public void open(boolean initializeMode){
 				resultB = false; 
 			}
 		}
-		if(resultB == false) {
+		if(!resultB) {
 			return false;
 		}else if(new Date().compareTo(event.getEventDate())<0) {
 			TypedQuery<Quote> qquery = db.createQuery("SELECT q FROM Quote q WHERE q.getQuestion().getEvent().getEventNumber() =?1", Quote.class);
