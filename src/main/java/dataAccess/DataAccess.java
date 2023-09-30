@@ -756,7 +756,7 @@ public void open(boolean initializeMode){
 		return b;
 	}
 	
-	public Quote storeQuote(String forecast, Double Quote, Question question) throws QuoteAlreadyExist {
+	public Quote storeQuote(String forecast, Double quote, Question question) throws QuoteAlreadyExist {
 		//System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
 		
 		Question q = db.find(Question.class, question.getQuestionNumber());
@@ -764,7 +764,7 @@ public void open(boolean initializeMode){
 		if (q.doesQuoteExist(forecast)) throw new QuoteAlreadyExist("Kuota existitzen da");
 		
 		db.getTransaction().begin();
-		Quote quo = q.addQuote(Quote, forecast, q);
+		Quote quo = q.addQuote(quote, forecast, q);
 		db.persist(quo); // db.persist(q) not required when CascadeType.PERSIST is added in questions property of Event class
 						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();
@@ -915,9 +915,9 @@ public void open(boolean initializeMode){
 	
 	public List<Transaction> findTransakzioak(Registered u){
 		Registered user = (Registered) db.find(Registered.class, u.getUsername()); 
-		TypedQuery<Transaction> Tquery = db.createQuery("SELECT t FROM Transaction t WHERE t.getErabiltzailea().getUsername() =?1 ", Transaction.class);
-		Tquery.setParameter(1, u.getUsername());
-		return Tquery.getResultList();
+		TypedQuery<Transaction> tquery = db.createQuery("SELECT t FROM Transaction t WHERE t.getErabiltzailea().getUsername() =?1 ", Transaction.class);
+		tquery.setParameter(1, u.getUsername());
+		return tquery.getResultList();
 		
 	}
 	
@@ -987,9 +987,9 @@ public void open(boolean initializeMode){
 		if(resultB == false) {
 			return false;
 		}else if(new Date().compareTo(event.getEventDate())<0) {
-			TypedQuery<Quote> Qquery = db.createQuery("SELECT q FROM Quote q WHERE q.getQuestion().getEvent().getEventNumber() =?1", Quote.class);
-			Qquery.setParameter(1, event.getEventNumber()); 
-			List<Quote> listQUO = Qquery.getResultList();
+			TypedQuery<Quote> qquery = db.createQuery("SELECT q FROM Quote q WHERE q.getQuestion().getEvent().getEventNumber() =?1", Quote.class);
+			qquery.setParameter(1, event.getEventNumber()); 
+			List<Quote> listQUO = qquery.getResultList();
 			for(int j=0; j<listQUO.size(); j++) {
 				Quote quo = db.find(Quote.class, listQUO.get(j));
 				for(int i=0; i<quo.getApustuak().size(); i++) {
