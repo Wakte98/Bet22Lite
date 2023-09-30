@@ -1,0 +1,9 @@
+dataAccess.DataAccess#EmaitzakIpini(LQuote;)V
+java.util.Date#<init>()V
+exceptions.EventNotFinished#instance-init#
+exceptions.EventNotFinished#<init>()V
+java.util.Date#instance-init#
+==
+ApustuaIrabazi dataAccess.DataAccess#ApustuaIrabazi(LApustuAnitza;)V
+compareTo java.util.Date#compareTo(Ljava/util/Date;)I
+setResult domain.Question#setResult(Ljava/lang/String;)V
