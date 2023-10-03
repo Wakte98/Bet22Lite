@@ -74,7 +74,6 @@ public class Apustua implements Serializable{
 	}
 	
 	public boolean galdutaMarkatu(Quote quo) {
-		//comentario
 		if(kuota.getQuestion().getQuestionNumber().equals(quo.getQuestion().getQuestionNumber()) && !quo.getQuoteNumber().equals(kuota.getQuoteNumber())) {
 			this.egoera="galduta";
 			return true;
