@@ -21,7 +21,7 @@ import domain.Registered;
 
 
 public class AdminGUI extends JFrame {
-	private static String ETIQUETAS = "Etiquetas";
+	private static String etiquetas = "Etiquetas";
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
@@ -58,7 +58,7 @@ public class AdminGUI extends JFrame {
 				try {
 					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+
 					System.out.println("Error: "+e1.toString()+" , probably problems with Business Logic or Database");
 				}
 				System.exit(1);
@@ -80,7 +80,7 @@ public class AdminGUI extends JFrame {
 		// this.setSize(271, 295);
 		this.setSize(495, 300);
 		this.setContentPane(getJContentPane());
-		this.setTitle(ResourceBundle.getBundle(ETIQUETAS).getString("AdminTitle"));
+		this.setTitle(ResourceBundle.getBundle(etiquetas).getString("AdminTitle"));
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class AdminGUI extends JFrame {
 			jContentPane.add(getBtnNewButton_1());
 			jContentPane.add(getJButtonEmaitzaIpini());
 			
-			JButton jButtonGertaerakEzabatu = new JButton(ResourceBundle.getBundle(ETIQUETAS).getString("GertaerakEzabatu")); //$NON-NLS-1$ //$NON-NLS-2$
+			JButton jButtonGertaerakEzabatu = new JButton(ResourceBundle.getBundle(etiquetas).getString("GertaerakEzabatu")); //$NON-NLS-1$ //$NON-NLS-2$
 			jButtonGertaerakEzabatu.setForeground(Color.DARK_GRAY);
 			jButtonGertaerakEzabatu.setBackground(Color.PINK);
 			jButtonGertaerakEzabatu.addActionListener(new ActionListener() {
@@ -129,7 +129,7 @@ public class AdminGUI extends JFrame {
 			jButtonCreateQuery.setForeground(Color.DARK_GRAY);
 			jButtonCreateQuery.setBackground(Color.PINK);
 			jButtonCreateQuery.setBounds(10, 84, 213, 30);
-			jButtonCreateQuery.setText(ResourceBundle.getBundle(ETIQUETAS).getString("CreateQuery"));
+			jButtonCreateQuery.setText(ResourceBundle.getBundle(etiquetas).getString("CreateQuery"));
 			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JFrame a = new CreateQuestionGUI(new Vector<Event>());
@@ -151,7 +151,7 @@ public class AdminGUI extends JFrame {
 			jButtonQueryQueries.setForeground(Color.DARK_GRAY);
 			jButtonQueryQueries.setBackground(Color.PINK);
 			jButtonQueryQueries.setBounds(10, 44, 213, 30);
-			jButtonQueryQueries.setText(ResourceBundle.getBundle(ETIQUETAS).getString("QueryQueries"));
+			jButtonQueryQueries.setText(ResourceBundle.getBundle(etiquetas).getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JFrame a = new FindQuestionsGUI();
@@ -166,7 +166,7 @@ public class AdminGUI extends JFrame {
 
 	private JLabel getLblNewLabel() {
 		if (jLabelSelectOption == null) {
-			jLabelSelectOption = new JLabel(ResourceBundle.getBundle(ETIQUETAS).getString("SelectOption"));
+			jLabelSelectOption = new JLabel(ResourceBundle.getBundle(etiquetas).getString("SelectOption"));
 			jLabelSelectOption.setOpaque(true);
 			jLabelSelectOption.setBackground(Color.PINK);
 			jLabelSelectOption.setBounds(110, 10, 249, 20);
@@ -179,7 +179,7 @@ public class AdminGUI extends JFrame {
 	
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
-			btnNewButton = new JButton(ResourceBundle.getBundle(ETIQUETAS).getString("KuotakIpini")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnNewButton = new JButton(ResourceBundle.getBundle(etiquetas).getString("KuotakIpini")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnNewButton.setBackground(Color.PINK);
 			btnNewButton.setForeground(Color.DARK_GRAY);
 			btnNewButton.setBounds(239, 44, 232, 30);
@@ -194,7 +194,7 @@ public class AdminGUI extends JFrame {
 	}
 	private JButton getBtnNewButton_1() {
 		if (btnEtiquetas == null) {
-			btnEtiquetas = new JButton(ResourceBundle.getBundle(ETIQUETAS).getString("GertaerakSortu")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnEtiquetas = new JButton(ResourceBundle.getBundle(etiquetas).getString("GertaerakSortu")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnEtiquetas.setBackground(Color.PINK);
 			btnEtiquetas.setForeground(Color.DARK_GRAY);
 			btnEtiquetas.setBounds(239, 84, 232, 30);
@@ -209,7 +209,7 @@ public class AdminGUI extends JFrame {
 	}
 	private JButton getJButtonEmaitzaIpini() {
 		if (jButtonEmaitzaIpini == null) {
-			jButtonEmaitzaIpini = new JButton(ResourceBundle.getBundle(ETIQUETAS).getString("EmaitzaIpini"));
+			jButtonEmaitzaIpini = new JButton(ResourceBundle.getBundle(etiquetas).getString("EmaitzaIpini"));
 			jButtonEmaitzaIpini.setForeground(Color.DARK_GRAY);
 			jButtonEmaitzaIpini.setBackground(Color.PINK);
 			jButtonEmaitzaIpini.addActionListener(new ActionListener() {
@@ -226,7 +226,7 @@ public class AdminGUI extends JFrame {
 	
 	private JButton getJButtonDesLogin() {
 		if (jButtonDesLogin == null) {
-			jButtonDesLogin = new JButton(ResourceBundle.getBundle(ETIQUETAS).getString("DesLogin")); //$NON-NLS-1$ //$NON-NLS-2$
+			jButtonDesLogin = new JButton(ResourceBundle.getBundle(etiquetas).getString("DesLogin")); //$NON-NLS-1$ //$NON-NLS-2$
 			jButtonDesLogin.setForeground(Color.WHITE);
 			jButtonDesLogin.setBackground(Color.DARK_GRAY);
 			jButtonDesLogin.addActionListener(new ActionListener() {
@@ -243,7 +243,7 @@ public class AdminGUI extends JFrame {
 	
 	private JButton getBtnGertaerakKopiatu() {
 		if (btnGertaerakKopiatu == null) {
-			btnGertaerakKopiatu = new JButton(ResourceBundle.getBundle(ETIQUETAS).getString("GertaerakKopiatu")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnGertaerakKopiatu = new JButton(ResourceBundle.getBundle(etiquetas).getString("GertaerakKopiatu")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnGertaerakKopiatu.setForeground(Color.DARK_GRAY);
 			btnGertaerakKopiatu.setBackground(Color.PINK);
 			btnGertaerakKopiatu.addActionListener(new ActionListener() {
