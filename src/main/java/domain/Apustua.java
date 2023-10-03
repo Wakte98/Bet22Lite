@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
+//añadido jon
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Apustua implements Serializable{
