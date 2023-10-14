@@ -28,7 +28,7 @@ import domain.Team;
 import exceptions.QuestionAlreadyExist;
 import test.dataAccess.TestDataAccess;
 
-public class crearEventoDABTest { 
+public class crearEventoDAB2Test { 
 	@Mock
     protected  EntityManager  db;
 	

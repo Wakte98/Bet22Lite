@@ -39,13 +39,13 @@ import exceptions.QuoteAlreadyExist;
 /**
  * It implements the data access to the objectDb database
  */
-public class DataAccessEliminarApuesta {
+public class DataAccessCrearEvento {
 	protected static EntityManager db;
 	protected static EntityManagerFactory emf;
 
 	ConfigXML c = ConfigXML.getInstance();
 
-	public DataAccessEliminarApuesta(boolean initializeMode) {
+	public DataAccessCrearEvento(boolean initializeMode) {
 
 		System.out.println("Creating DataAccess instance => isDatabaseLocal: " + c.isDatabaseLocal()
 				+ " getDatabBaseOpenMode: " + c.getDataBaseOpenMode());
@@ -54,10 +54,10 @@ public class DataAccessEliminarApuesta {
 
 	}
 
-	public DataAccessEliminarApuesta() {
+	public DataAccessCrearEvento() {
 		this(false);
 	}
-	public DataAccessEliminarApuesta(EntityManager dbb) {
+	public DataAccessCrearEvento(EntityManager dbb) {
 		System.out.println("kkkk "+db);
 		db=dbb;
 
