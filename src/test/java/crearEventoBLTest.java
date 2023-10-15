@@ -26,7 +26,7 @@ public class crearEventoBLTest {
         // Simular una fecha de evento en el futuro
         Date futureEventDate = new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000); // Un día en el futuro
         String description = "Barcelona-Real Madrid";
-        String sport = "Futbol";
+        String sport = "Futbol"; 
 
         // Configurar el comportamiento del mock para que dbManager.gertaerakSortu devuelva true
         Mockito.doReturn(true).when(dbManager).gertaerakSortu(description, futureEventDate, sport);

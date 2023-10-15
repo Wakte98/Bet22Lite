@@ -39,7 +39,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-public class gertaerakKopiatuDAWTest {
+public class GertaerakKopiatuDAWTest {
     
 	@Mock
     protected  EntityManager  db;

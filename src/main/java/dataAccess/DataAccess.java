@@ -1055,7 +1055,6 @@ public void open(boolean initializeMode){
 		Event gertaera = db.find(Event.class, e.getEventNumber());
 		db.getTransaction().begin();
 		
-		
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.getDescription()=?1 and ev.getEventDate()=?2",Event.class);   
 		query.setParameter(1,gertaera.getDescription());
 		query.setParameter(2, date);

@@ -38,7 +38,7 @@ public class CreateQuestionDAW {
 			Float betMinimum=new Float(2);
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date oneDate=null;;
+			Date oneDate=null;
 			try {
 				oneDate = sdf.parse("05/10/2022");
 			} catch (ParseException e) {
