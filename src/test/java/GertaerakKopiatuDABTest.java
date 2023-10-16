@@ -1,7 +1,4 @@
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -142,13 +139,6 @@ public class GertaerakKopiatuDABTest {
 		query.setParameter(2, date); FUNCIONE Y NO SE QUEDE PARADO EL METODO Y DE FALSO"
      */
   
-        
-//    @Before
-//  public void setUp() {
-//  	
-//      
-//
-//  }
     
     //Este test comprueba que si el evento no esta en la base de datos lanza una 
     //excepcion controlada
