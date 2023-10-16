@@ -43,7 +43,6 @@ public class DataAccess  {
 	protected static EntityManager  db;
 	protected static EntityManagerFactory emf;
 
-
 	ConfigXML c=ConfigXML.getInstance();
 
      public DataAccess(boolean initializeMode)  {
@@ -1033,7 +1032,7 @@ public void open(boolean initializeMode){
 				ema.add(0, r);
 			}else {
 				i=0;
-				while(i<ema.size() && r.getIrabazitakoa()<ema.get(i).getIrabazitakoa()) {
+				while(i<ema.size() && r.getIrabazitakoa()<ema.get(i).getIrabazitakoa()) {  //IF-3
 					i++;
 				}
 				ema.add(i, r);

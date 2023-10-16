@@ -44,7 +44,13 @@ public class RankingLortuDAWTest {
 	    Rquery = mock(TypedQuery.class);
 	}
 	
-	@Test
+
+	/**
+	 * @author josus
+	 * Define el comportamiento del TypedQuery para que devuelva una
+	 * lista de tipo Registered vacía y, a continuación comprueva que 
+	 * el método rankingLortu devuelve una lista vacía.
+	 */
 	public void testRankingLortuDBVacia() {
 		//Configuro el comportamiento del mock TypedQuery para que devuelva una lista vacía
 		when(db.createQuery("SELECT r FROM Registered r", Registered.class)).thenReturn(Rquery);
@@ -61,6 +67,13 @@ public class RankingLortuDAWTest {
 	}
 	
 	@Test
+	/**
+	 * @author josus
+	 * Crea un objeeto de tipo Registered y define el comportamiento 
+	 * del TypedQuery para que devuelva una lista de tipo Registered
+	 * con unicamente dicho elemento. A continuación comprueba que el 
+	 * método devuelve la lista con el único elemento.
+	 */
 	public void testRankingLortuUnicoRegistro() {
 		//Simulo un Registered
 		Registered user = new Registered("user1", "psswrd1", 101234);
@@ -84,6 +97,15 @@ public class RankingLortuDAWTest {
 	}
 	
 	@Test
+	/**
+	 * @author josus
+	 * Crea varios objetos de tipo Registered, a los que asigna ganancias distintas. 
+	 * Configura el TypedQuery para que devuelva una lista de estos usuarios pero no
+	 * ordenados en ranking. A continuación comprueba que los elementos de la lista 
+	 * que devuelve el método rankingLortu son los mismos que se han instanciado.
+	 * Por último comprueba que los elementos que devuelve el método están ordenados
+	 * de mayor a menor por ganancias en apuestas.
+	 */
 	public void testRankingLortuVariosRegistros() {
 		//Simulo varios Registered
 		Registered user1 = new Registered("user1", "psswrd1", 101234);
@@ -123,6 +145,15 @@ public class RankingLortuDAWTest {
       	assertTrue(isSorted(result));
 	}
 	
+	/**
+	 * @author josus
+	 * @param list
+	 * @return boolean
+	 * Método que recibe una lista de Registered y devuelve true si esta lista está
+	 * ordenada de mayor a menor por ganancias mediante el método getIrabazitakoa
+	 * de la clase Registered. Devuelve Faalse en caso contrario.
+	 */
+
 	private boolean isSorted(List<Registered> list) {
 		List<Registered> listaOrdenada = new ArrayList<>(list);
 		listaOrdenada.sort(Comparator.comparingDouble(Registered::getIrabazitakoa).reversed());
