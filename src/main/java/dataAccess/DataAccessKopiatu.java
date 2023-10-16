@@ -638,7 +638,7 @@ public class DataAccessKopiatu  {
 			return q;
 		
 	}
-	
+	 
 	/**
 	 * This method retrieves from the database the events of a given date 
 	 * 

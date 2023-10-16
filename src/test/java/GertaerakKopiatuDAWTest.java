@@ -37,7 +37,6 @@ public class GertaerakKopiatuDAWTest {
 	
     @InjectMocks
     public DataAccessKopiatu sut;
-    //protected DataAccessEliminarApuesta sut=new DataAccessEliminarApuesta(db);
     
     @Before
     public void setUp() {
