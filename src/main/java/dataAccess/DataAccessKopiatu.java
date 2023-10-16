@@ -1060,7 +1060,7 @@ public void open(boolean initializeMode){
 	public boolean gertaerakKopiatu(Event e, Date date) {
 		Boolean b=false;
 		Event gertaera = db.find(Event.class, e.getEventNumber());
-		db.getTransaction().begin();
+		db.getTransaction().begin(); 
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.getDescription()=?1 and ev.getEventDate()=?2",Event.class);   
 		query.setParameter(1,gertaera.getDescription());
 		query.setParameter(2, date);

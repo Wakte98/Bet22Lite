@@ -1,11 +1,7 @@
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
@@ -15,22 +11,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import businessLogic.BLFacadeImplementation;
-import dataAccess.DataAccess;
-import dataAccess.DataAccessCrearEvento;
 import dataAccess.DataAccessKopiatu;
 import domain.Event;
 import domain.Question;
 import domain.Quote;
 import domain.Sport;
-import domain.Team;
-import exceptions.EventFinished;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -43,7 +31,6 @@ public class GertaerakKopiatuDAWTest {
     
 	@Mock
     protected  EntityManager  db;
-	protected  Quote  x;
 	
 	@Mock
     protected  EntityTransaction  et;
@@ -133,8 +120,6 @@ public class GertaerakKopiatuDAWTest {
     	        Sport sport = mock(Sport.class);
     	        //creamos un vector Questions vacio
     	        Vector<Question> vq = new Vector<Question>();
-    	        //Creamos la pregunta
-    	        Question q = mock(Question.class);
     	        //añadimos el deporte y la lista de pregutnas al evento
     	        event.setSport(sport);
     	        event.setQuestions(vq);
