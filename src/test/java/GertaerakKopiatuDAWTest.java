@@ -67,7 +67,6 @@ public class GertaerakKopiatuDAWTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-    	
 		//Creamos un evento
 		Event event = new Event(2, "Barça-Madrid", future, null, null);
 		// creamos una lista
@@ -75,7 +74,6 @@ public class GertaerakKopiatuDAWTest {
 		// Agregar elementos a resultList para simular una lista NO vacía
 		resultList.add(new Event());
 
-       
 		// Mock de la consulta
 		TypedQuery<Event> mockQuery = Mockito.mock(TypedQuery.class);
     	      

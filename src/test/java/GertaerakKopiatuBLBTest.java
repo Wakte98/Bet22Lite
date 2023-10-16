@@ -38,6 +38,32 @@ public class GertaerakKopiatuBLBTest {
  * REPRESENTA UNA FECHA Y HORA EN ESPECIFICO
  */
     
+    
+  //Este test comprueba que si la fecha es valida y anterior, entra al metodo y empieza a funcionar
+    @Test 
+    public void testGertaerakKopiatu_test0() {
+    	    
+    	Event event = mock(Event.class);
+
+    	// Configurar el mock de Date para devolver una fecha en formato valido
+    	//Date fechaActualMock = mock(Date.class);
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Date fecha = null;
+		try {
+			fecha = formato.parse("15-10-2000");
+		} catch (ParseException e1) {  
+			e1.printStackTrace();
+		}
+
+        // Llamar al método con el mock de Date
+        boolean resultado = blf.gertaerakKopiatu(event, fecha);
+        //System.out.println(resultado);
+
+        // Verificar que el resultado sea false, porque el metodo
+        //inicicaliza b = false
+        assertFalse(resultado);
+    }
+    
   //Este test comprueba que si la fecha es valida devuelve true y el metodo funciona
     @Test 
     public void testGertaerakKopiatu_test1() {

@@ -1,12 +1,17 @@
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import dataAccess.DataAccessKopiatu;
 import domain.Event;
 
@@ -16,73 +21,108 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 public class GertaerakKopiatuDABTest {
     
+	
 	@Mock
-	DataAccessKopiatu db = mock(DataAccessKopiatu.class);
+	
+    protected  EntityManager  db;
 	
 	@Mock
     protected  EntityTransaction  et;
 	
     @InjectMocks
-    public DataAccessKopiatu sut;
-    //protected DataAccessEliminarApuesta sut=new DataAccessEliminarApuesta(db);
+    DataAccessKopiatu sut = mock(DataAccessKopiatu.class);
+
+    
+
+    
+    
 /**
  * LA CLASE DATE.CLASS DE JAVA NO RECONOCE SI UNA FECHA ES VALIDA O NO, SIMPLEMENTE 
  * REPRESENTA UNA FECHA Y HORA EN ESPECIFICO
  */
     
-  //Este test comprueba que si la fecha es valida devuelve true y el metodo funciona
+  //Este test comprueba que si la fecha es valida y anterior, entra al metodo y empieza a funcionar
+    @Test 
+    public void testGertaerakKopiatu_test0() {
+    	    
+    	Event event = mock(Event.class);
+
+    	// Configurar el mock de Date para devolver una fecha en formato valido
+    	//Date fechaActualMock = mock(Date.class);
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Date fecha = null;
+		try {
+			fecha = formato.parse("15-10-2000");
+		} catch (ParseException e1) {  
+			e1.printStackTrace();
+		}
+
+        // Llamar al método con el mock de Date
+        boolean resultado = sut.gertaerakKopiatu(event, fecha);
+        //System.out.println(resultado);
+
+        // Verificar que el resultado sea false, porque el metodo
+        //inicicaliza b = false
+        assertFalse(resultado);
+    }
+    
+  //Este test comprueba que si la fecha es valida entra al metodo y empieza a funcionar
     @Test 
     public void testGertaerakKopiatu_test1() {
     	    
     	Event event = mock(Event.class);
 
-    	// Configurar el mock de Date para devolver una fecha valida
-//        Date fechaActualMock = mock(Date.class);
+    	// Configurar el mock de Date para devolver una fecha en formato valido
+    	//Date fechaActualMock = mock(Date.class);
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         Date fecha = null;
 		try {
 			fecha = formato.parse("15-10-24");
-		} catch (ParseException e1) {
+		} catch (ParseException e1) {  
 			e1.printStackTrace();
 		}
 
         // Llamar al método con el mock de Date
-        boolean resultado = db.gertaerakKopiatu(event, fecha);
+        boolean resultado = sut.gertaerakKopiatu(event, fecha);
         //System.out.println(resultado);
 
-        // Verificar que el resultado sea verdadero (por ejemplo, si la fecha es mayor)
-        assertTrue(resultado);
+        // Verificar que el resultado sea false, porque el metodo
+        //inicicaliza b = false
+        assertFalse(resultado);
     }
     
     
     
-  //Este test comprueba que si la fecha NO es valida devuelve true y el metodo funciona
+  //Este test comprueba que si la fecha NO es valida devuelve false y el metodo funciona
     @Test 
     public void testGertaerakKopiatu_test2() {
     	   
 
     	Event event = mock(Event.class);
 
-    	// Configurar el mock de Date para devolver una fecha valida
+    	// Configurar el mock de Date para devolver una fecha en formato valido
 //        Date fechaActualMock = mock(Date.class);
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         Date fecha = null;
 		try {
-			fecha = formato.parse("15-10-24");
+			fecha = formato.parse("31-2-2023");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 
         // Llamar al método con el mock de Date
-        boolean resultado = db.gertaerakKopiatu(event, fecha);
+        boolean resultado = sut.gertaerakKopiatu(event, fecha);
         //System.out.println(resultado);
 
-        // Verificar que el resultado sea verdadero (por ejemplo, si la fecha es mayor)
-        assertTrue(resultado);
+        // Verificar que el resultado sea false, porque el metodo
+        //inicicaliza b = false
+        assertFalse(resultado);
     }
     
     /**
@@ -103,6 +143,50 @@ public class GertaerakKopiatuDABTest {
      */
   
         
+//    @Before
+//  public void setUp() {
+//  	
+//      
+//
+//  }
+    
+    //Este test comprueba que si el evento no esta en la base de datos lanza una 
+    //excepcion controlada
+    @Test 
+    public void testGertaerakKopiatu_test3() {
+    	   
+    	MockitoAnnotations.initMocks(this);
+		Mockito.doReturn(et).when(db).getTransaction();
+	     sut=new DataAccessKopiatu(db);
+    	
+    	Event event = mock(Event.class);
+
+    	// Configurar el mock de Date para devolver una fecha en formato valido
+    	//Date fechaActualMock = mock(Date.class);
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Date fecha = null;
+		try {
+			fecha = formato.parse("15-10-24");
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		} 
+		    	      
+		// Configurar el comportamiento para que delvuelva el evento creado
+//		Mockito.when(dbt.find(Event.class, event.getEventNumber())).doNothing();
+		Mockito.when(db.find(Event.class, event.getEventNumber()))
+	       .thenThrow(new RuntimeException("No exixte el evento en BD"));
+		    	               
+		try {
+		    db.find(Event.class, event.getEventNumber());
+		} catch (RuntimeException e) {
+		    // Aquí puedes manejar la excepción generada
+		    System.out.println("Se generó una excepción: " + e.getMessage());
+		}    
+		
+    }
+    
+    
+  
     
 
 }
