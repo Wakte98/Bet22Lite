@@ -43,7 +43,7 @@ public class GertaerakKopiatuDAWTest {
     	
         MockitoAnnotations.initMocks(this);
 		Mockito.doReturn(et).when(db).getTransaction();
-	     sut=new DataAccessKopiatu(db);
+	     sut=new DataAccessKopiatu(db); 
 
     }
     /**
@@ -64,7 +64,7 @@ public class GertaerakKopiatuDAWTest {
 		try {
 			future = sdf.parse("2024-10-15");
 		} catch (ParseException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		//Creamos un evento
 		Event event = new Event(2, "Barça-Madrid", future, null, null);
@@ -112,14 +112,14 @@ public class GertaerakKopiatuDAWTest {
 		}
     	
     	// Crear un objeto Event
-				//creamos un evento y deporte
-    	        Event event = new Event(2, "Barça-Madrid", future, null, null);
-    	        Sport sport = mock(Sport.class);
-    	        //creamos un vector Questions vacio
-    	        Vector<Question> vq = new Vector<Question>();
-    	        //añadimos el deporte y la lista de pregutnas al evento
-    	        event.setSport(sport);
-    	        event.setQuestions(vq);
+		//creamos un evento y deporte
+		Event event = new Event(2, "Barça-Madrid", future, null, null);
+		Sport sport = mock(Sport.class);
+		//creamos un vector Questions vacio
+		Vector<Question> vq = new Vector<Question>();
+		//añadimos el deporte y la lista de pregutnas al evento
+        event.setSport(sport);
+        event.setQuestions(vq);
 
    	        
         // Mock de la consulta

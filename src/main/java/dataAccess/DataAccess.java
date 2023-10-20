@@ -50,7 +50,7 @@ public class DataAccess  {
 		
 		System.out.println("Creating DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" getDatabBaseOpenMode: "+c.getDataBaseOpenMode());
 
-		open(initializeMode);
+		open(initializeMode); 
 		
 	}
 
@@ -1055,13 +1055,12 @@ public void open(boolean initializeMode){
 		Event gertaera = db.find(Event.class, e.getEventNumber());
 		db.getTransaction().begin();
 		
-		
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.getDescription()=?1 and ev.getEventDate()=?2",Event.class);   
 		query.setParameter(1,gertaera.getDescription());
 		query.setParameter(2, date);
 		if(query.getResultList().isEmpty()) {
-			b=true;
-			String[] taldeak = gertaera.getDescription().split("-");
+			b=true; 
+			String[] taldeak = gertaera.getDescription().split("-"); 
 			Team lokala = new Team(taldeak[0]);
 			Team kanpokoa = new Team(taldeak[1]);
 			Event gertKopiatu = new Event(gertaera.getDescription(), date, lokala, kanpokoa);

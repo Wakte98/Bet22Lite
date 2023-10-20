@@ -68,7 +68,7 @@ public class GertaerakKopiatuDABTest {
         assertFalse(resultado);
     }
     
-  //Este test comprueba que si la fecha es valida entra al metodo y empieza a funcionar
+  //Este test comprueba que si la fecha es valida y posterior entra al metodo y empieza a funcionar
     @Test 
     public void testGertaerakKopiatu_test1() {
     	    
