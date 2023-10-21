@@ -59,7 +59,7 @@ public class GertaerakKopiatuDABTest {
 			e1.printStackTrace();
 		}
 
-        // Llamar al método con el mock de Date
+        // Llamar al metodo con el mock de Date
         boolean resultado = sut.gertaerakKopiatu(event, fecha);
         //System.out.println(resultado);
 
@@ -84,7 +84,7 @@ public class GertaerakKopiatuDABTest {
 			e1.printStackTrace();
 		}
 
-        // Llamar al método con el mock de Date
+        // Llamar al metodo con el mock de Date
         boolean resultado = sut.gertaerakKopiatu(event, fecha);
         //System.out.println(resultado);
 
@@ -112,7 +112,7 @@ public class GertaerakKopiatuDABTest {
 			e1.printStackTrace();
 		}
 
-        // Llamar al método con el mock de Date
+        // Llamar al metodo con el mock de Date
         boolean resultado = sut.gertaerakKopiatu(event, fecha);
         //System.out.println(resultado);
 
@@ -133,7 +133,7 @@ public class GertaerakKopiatuDABTest {
      * PASA LO MISMO CON LA CLASE EVENTO.CLASS. AUNQUE PASEMOS UN EVENTO CREADO CON MOCKITO,
      * NO SABEMOS LOS PARAMETROS DEL EVENTO QUE NECESITAMOS PARA HACER QUE EL METODO FUNCIONE.
      * POR QEJEMPLO, COMO HACEMOS PARA CREAR QUESTIONS Y QUERYS DE UN EVENTO SI NO SABEMOS COMO
-     * SE CREEAN(ESTAMOS EN CJA NEGRA). SIEMPRE SERA FALSE, PQ AUNQ AÑADAMOS EL EVENTO A LA BD, 
+     * SE CREEAN(ESTAMOS EN CJA NEGRA). SIEMPRE SERA FALSE, PQ AUNQ Aï¿½ADAMOS EL EVENTO A LA BD, 
      * NOS PIDE UNA DESCRIPCION PARA QUE "query.setParameter(1,gertaera.getDescription()); Y
 		query.setParameter(2, date); FUNCIONE Y NO SE QUEDE PARADO EL METODO Y DE FALSO"
      */
@@ -168,8 +168,8 @@ public class GertaerakKopiatuDABTest {
 		try {
 		    db.find(Event.class, event.getEventNumber());
 		} catch (RuntimeException e) {
-		    // Aquí puedes manejar la excepción generada
-		    System.out.println("Se generó una excepción: " + e.getMessage());
+		    // Aqui puedes manejar la excepcion generada
+		    System.out.println("Se generï¿½ una excepciï¿½n: " + e.getMessage());
 		}    
 		
     }

@@ -48,21 +48,21 @@ public class RankingLortuDAWTest {
 	/**
 	 * @author josus
 	 * Define el comportamiento del TypedQuery para que devuelva una
-	 * lista de tipo Registered vacía y, a continuación comprueva que 
-	 * el método rankingLortu devuelve una lista vacía.
+	 * lista de tipo Registered vacia y, a continuacion comprueva que 
+	 * el metodo rankingLortu devuelve una lista vacia.
 	 */
 	public void testRankingLortuDBVacia() {
-		//Configuro el comportamiento del mock TypedQuery para que devuelva una lista vacía
+		//Configuro el comportamiento del mock TypedQuery para que devuelva una lista vacï¿½a
 		when(db.createQuery("SELECT r FROM Registered r", Registered.class)).thenReturn(Rquery);
 		when(Rquery.getResultList()).thenReturn(new ArrayList<Registered>());
 		
-		//Llamo al método rankingLortu()
+		//Llamo al metodo rankingLortu()
 		List<Registered> result = sut.rankingLortu();
 		
 		//Verifico que el resultado no sea nulo
 		assertNotNull(result);
 		
-		//Verifico que la lista devuelta es vacía
+		//Verifico que la lista devuelta es vacï¿½a
 		assertTrue(result.isEmpty());
 	}
 	
@@ -71,8 +71,8 @@ public class RankingLortuDAWTest {
 	 * @author josus
 	 * Crea un objeeto de tipo Registered y define el comportamiento 
 	 * del TypedQuery para que devuelva una lista de tipo Registered
-	 * con unicamente dicho elemento. A continuación comprueba que el 
-	 * método devuelve la lista con el único elemento.
+	 * con unicamente dicho elemento. A continuacion comprueba que el 
+	 * metodo devuelve la lista con el ï¿½nico elemento.
 	 */
 	public void testRankingLortuUnicoRegistro() {
 		//Simulo un Registered
@@ -86,13 +86,13 @@ public class RankingLortuDAWTest {
         when(db.createQuery("SELECT r FROM Registered r", Registered.class)).thenReturn(Rquery);
         when(Rquery.getResultList()).thenReturn(listaConUnRegistro);
         
-        //Llamo al método rankingLortu()
+        //Llamo al mï¿½todo rankingLortu()
       	List<Registered> result = sut.rankingLortu();
       		
       	//Verifico que la lista resultante contenga al unico usuario
       	assertTrue(result.contains(user));
       	
-      	//Verifico que el método no haya devuelto más de un solo dato
+      	//Verifico que el mï¿½todo no haya devuelto mï¿½s de un solo dato
       	assertEquals(1, result.size());
 	}
 	
@@ -101,9 +101,9 @@ public class RankingLortuDAWTest {
 	 * @author josus
 	 * Crea varios objetos de tipo Registered, a los que asigna ganancias distintas. 
 	 * Configura el TypedQuery para que devuelva una lista de estos usuarios pero no
-	 * ordenados en ranking. A continuación comprueba que los elementos de la lista 
-	 * que devuelve el método rankingLortu son los mismos que se han instanciado.
-	 * Por último comprueba que los elementos que devuelve el método están ordenados
+	 * ordenados en ranking. A continuaciom comprueba que los elementos de la lista 
+	 * que devuelve el mï¿½todo rankingLortu son los mismos que se han instanciado.
+	 * Por ultimo comprueba que los elementos que devuelve el mï¿½todo estan ordenados
 	 * de mayor a menor por ganancias en apuestas.
 	 */
 	public void testRankingLortuVariosRegistros() {
@@ -119,7 +119,7 @@ public class RankingLortuDAWTest {
 		user3.setIrabazitakoa(350.00);
 		user4.setIrabazitakoa(75.00);
 		
-		//Añado los usuarios a una lista de tal forma que no estén ordenados por ganancias
+		//Aï¿½ado los usuarios a una lista de tal forma que no esten ordenados por ganancias
 		List<Registered> listaUsuarios = new ArrayList<>();
         listaUsuarios.add(user1);
         listaUsuarios.add(user2);
@@ -130,7 +130,7 @@ public class RankingLortuDAWTest {
         when(db.createQuery("SELECT r FROM Registered r", Registered.class)).thenReturn(Rquery);
         when(Rquery.getResultList()).thenReturn(listaUsuarios);
         
-        //Llamo al método rankingLortu()
+        //Llamo al metodo rankingLortu()
       	List<Registered> result = sut.rankingLortu();
       	
       	//Verifico que el resultado tenga el numero correcto de usuarios
@@ -141,7 +141,7 @@ public class RankingLortuDAWTest {
 			assertTrue(listaUsuarios.contains(r));
 		}
       	
-      	//Verifico que la lista resultante está ordenada en ranking de ganancias
+      	//Verifico que la lista resultante este ordenada en ranking de ganancias
       	assertTrue(isSorted(result));
 	}
 	
@@ -149,8 +149,8 @@ public class RankingLortuDAWTest {
 	 * @author josus
 	 * @param list
 	 * @return boolean
-	 * Método que recibe una lista de Registered y devuelve true si esta lista está
-	 * ordenada de mayor a menor por ganancias mediante el método getIrabazitakoa
+	 * Metodo que recibe una lista de Registered y devuelve true si esta lista esta
+	 * ordenada de mayor a menor por ganancias mediante el metodo getIrabazitakoa
 	 * de la clase Registered. Devuelve Faalse en caso contrario.
 	 */
 

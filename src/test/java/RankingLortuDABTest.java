@@ -32,7 +32,7 @@ public class RankingLortuDABTest {
 	@Test
 	/**
 	 * @author josus
-	 * Comprueba que rankingLortu devuelve una lista vacía cuando no hay
+	 * Comprueba que rankingLortu devuelve una lista vacia cuando no hay
 	 * entradas de tipo Registered en la base de datos.
 	 */
 	public void testRankingLortuDBVacia() {
@@ -40,7 +40,6 @@ public class RankingLortuDABTest {
 		//Establezco el comportamiento del mock paran que dbManager.rankingLortu() devuelva la lista result vacia
         Mockito.doReturn(listaVacia).when(dbManager).rankingLortu();
         
-        //Llamo al método rankigLortu()
         BLFacadeImplementation facade = new BLFacadeImplementation(dbManager);
         List<Registered> result = facade.rankingLortu();
         
@@ -68,7 +67,6 @@ public class RankingLortuDABTest {
 		
 		unicoRegistro.add(user1);
 		
-		//Establezco el comportamiento del mock paran que dbManager.rankingLortu() devuelva la lista con un único registro
         Mockito.doReturn(unicoRegistro).when(dbManager).rankingLortu();
         
         BLFacadeImplementation facade = new BLFacadeImplementation(dbManager);
@@ -78,13 +76,7 @@ public class RankingLortuDABTest {
 	}
 	
 	@Test
-	/**
-	 * @author josus
-	 * Genera varias instancias del tipo Registered, los añade a la 
-	 * base de datosy comprueba que todos ellos se encuentren en el resultante
-	 * a la llamada al método rankingLortu. Comprueba tambien que rankingLortu
-	 * no esté devolviendo datos de más. 
-	 */
+
 	public void testRankingLortuVariosRegistros() {
 		List<Registered> variosRegistros = new ArrayList<Registered>();
 		
@@ -118,7 +110,6 @@ public class RankingLortuDABTest {
 		//Establezco el comportamiento del mock paran que dbManager.rankingLortu() devuelva la lista con varios registros
         Mockito.doReturn(variosRegistros).when(dbManager).rankingLortu();
         
-        //Añado los usuarios a la base de datos
         BLFacadeImplementation facade = new BLFacadeImplementation(dbManager);
         facade.storeRegistered(name2, password2, bankAccount2);
         facade.storeRegistered(name3, password3, bankAccount3);
@@ -129,7 +120,6 @@ public class RankingLortuDABTest {
         //Compruebo que el numero de elementos devueltos es el esperado
         assertEquals(variosRegistros.size(), result.size());
         
-        //Compruebo que cada elemento de la lista de usuarios que he creado esté en el resultado
         for (Registered registered : result) {
 			assertTrue(variosRegistros.contains(registered));
 		}
