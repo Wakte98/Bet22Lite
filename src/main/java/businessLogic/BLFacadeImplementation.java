@@ -17,6 +17,7 @@ import domain.Event;
 import domain.Question;
 import domain.Quote;
 import domain.Registered;
+import domain.RegisteredDetails;
 import domain.Sport;
 import domain.Team;
 import domain.Transaction;
@@ -153,11 +154,12 @@ public class BLFacadeImplementation  implements BLFacade {
     	return u;
     }
     @WebMethod	
-    public void storeRegistered(String username, String password, Integer bankAccount) {
+    public void storeRegistered(RegisteredDetails registeredDetails) {
     	dbManager.open(false);
-    	dbManager.storeRegistered(username, password, bankAccount);
+    	dbManager.storeRegistered(registeredDetails);
     	dbManager.close();
     }
+    
     @WebMethod	
     public boolean gertaerakSortu(String description,Date eventDate, String sport) throws EventFinished{
     	if(new Date().compareTo(eventDate)>0)

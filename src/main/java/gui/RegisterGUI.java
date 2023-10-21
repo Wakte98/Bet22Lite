@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import businessLogic.BLFacade;
+import domain.RegisteredDetails;
 
 
 public class RegisterGUI extends JFrame {
@@ -135,7 +136,8 @@ public class RegisterGUI extends JFrame {
 					if(businessLogic.isRegister(izena) == false) {
 						try {
 							Integer i = Integer.parseInt(bankAccount);
-							businessLogic.storeRegistered(izena, password, i);
+							RegisteredDetails rd = new RegisteredDetails(izena,password,i);
+							businessLogic.storeRegistered(rd);
 						}catch (NumberFormatException ex) {
 							System.out.println(ex.getMessage());
 						}

@@ -15,6 +15,7 @@ import domain.Event;
 import domain.Question;
 import domain.Quote;
 import domain.Registered;
+import domain.RegisteredDetails;
 import domain.Sport;
 import domain.Team;
 import domain.Transaction;
@@ -68,7 +69,7 @@ public interface BLFacade  {
 	@WebMethod public Registered isLogin(String username, String password); 
 	
 	@WebMethod public boolean isRegister(String username); 
-	@WebMethod public void storeRegistered(String username, String password, Integer bankAccount);
+	@WebMethod public void storeRegistered(RegisteredDetails registeredDetails);
 	
 	@WebMethod public boolean gertaerakSortu(String description,Date eventDate, String sport) throws EventFinished;
 	

@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
 import domain.Registered;
+import domain.RegisteredDetails;
 
 public class RankingLortuDABTest {
 	
@@ -65,11 +66,11 @@ public class RankingLortuDABTest {
 		Integer bankAccount = user1.getBankAccount();
 		
 		unicoRegistro.add(user1);
-		
+		RegisteredDetails rd = new RegisteredDetails(name, password, bankAccount);
         Mockito.doReturn(unicoRegistro).when(dbManager).rankingLortu();
         
         BLFacadeImplementation facade = new BLFacadeImplementation(dbManager);
-        facade.storeRegistered(name, password, bankAccount);
+        facade.storeRegistered(rd);
         List<Registered> result = facade.rankingLortu();
         assertEquals(unicoRegistro, result);
 	}
@@ -105,13 +106,16 @@ public class RankingLortuDABTest {
 		variosRegistros.add(user1);
 		variosRegistros.add(user2);
 		variosRegistros.add(user3);
-		
+		RegisteredDetails rd1 = new RegisteredDetails("user1", "psswrd2", 10123);
+		RegisteredDetails rd2 = new RegisteredDetails("user2", "psswrd2", 20123);
+		RegisteredDetails rd3 = new RegisteredDetails("user3", "psswrd3", 30123);
+
 		//Establezco el comportamiento del mock paran que dbManager.rankingLortu() devuelva la lista con varios registros
         Mockito.doReturn(variosRegistros).when(dbManager).rankingLortu();
         
         BLFacadeImplementation facade = new BLFacadeImplementation(dbManager);
-        facade.storeRegistered(name2, password2, bankAccount2);
-        facade.storeRegistered(name3, password3, bankAccount3);
+        facade.storeRegistered(rd2);
+        facade.storeRegistered(rd3);
         
         //Llamo a la funcion rankingLortu
         List<Registered> result = facade.rankingLortu();
