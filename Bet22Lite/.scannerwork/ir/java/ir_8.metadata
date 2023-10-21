@@ -1,7 +1,0 @@
-dataAccess.DataAccess#getEventsMonth(Ljava/util/Date;)Ljava/util/Vector;
-java.util.Vector#<init>()V
-java.util.Vector#instance-init#
-==
-toString java.util.Date#toString()Ljava/lang/String;
-println java.io.PrintStream#println(Ljava/lang/String;)V
-add java.util.Vector#add(Ljava/lang/Object;)Z

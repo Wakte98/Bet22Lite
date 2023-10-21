@@ -1,5 +1,0 @@
-gui.ApustuakEzabatuGUI#extracted(Ldomain/ApustuAnitza;)V
-java.util.Date#<init>()V
-java.util.Date#instance-init#
-==
-compareTo java.util.Date#compareTo(Ljava/util/Date;)I

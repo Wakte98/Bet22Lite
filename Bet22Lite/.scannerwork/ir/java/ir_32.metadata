@@ -1,8 +1,0 @@
-dataAccess.DataAccess#gertaeraEzabatu(LEvent;)Z
-java.util.Date#<init>()V
-java.util.Date#instance-init#
-==
-apustuaEzabatu dataAccess.DataAccess#apustuaEzabatu(LRegistered;LApustuAnitza;)V
-getResult domain.Question#getResult()Ljava/lang/String;
-ApustuaIrabazi dataAccess.DataAccess#ApustuaIrabazi(LApustuAnitza;)V
-compareTo java.util.Date#compareTo(Ljava/util/Date;)I

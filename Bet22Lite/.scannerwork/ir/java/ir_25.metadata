@@ -1,8 +1,0 @@
-dataAccess.DataAccess#ApustuaEgin(LRegistered;Ljava/util/Vector;Ljava/lang/Double;Ljava/lang/Integer;)Z
-null
-java.util.Date#<init>()V
-java.util.Date#instance-init#
-==
-ApustuaEgin dataAccess.DataAccess#ApustuaEgin(LRegistered;Ljava/util/Vector;Ljava/lang/Double;Ljava/lang/Integer;)Z
-getNork domain.Jarraitzailea#getNork()LRegistered;
-getJarraitzaileaNumber domain.Jarraitzailea#getJarraitzaileaNumber()Ljava/lang/Integer;

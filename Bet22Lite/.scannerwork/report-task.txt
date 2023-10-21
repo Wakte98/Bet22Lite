@@ -1,7 +1,0 @@
-organization=betsinda
-projectKey=BETS2023
-serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.46691
-dashboardUrl=https://sonarcloud.io/dashboard?id=BETS2023
-ceTaskId=AYrMxqnkY5qyrlFc-SxM
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYrMxqnkY5qyrlFc-SxM

@@ -1,36 +1,0 @@
-
-RbusinessLogic.BLFacadeImplementation#getEvents(Ljava/util/Date;)Ljava/util/Vector;n
-d/C:/Users/inaxi/eclipse-workspace2/Bet22Lite/src/main/java/businessLogic/BLFacadeImplementation.javae e("startingBlock*÷
-startingBlocke e(*
-}
-d d(
-%0"
-__annotate*)
-
-__unknown_file (
-	WebMethod*4
-
-__unknown_file (
-
-datejava.util.DateV
-T
-e% e()
-datejava.util.Date"__annotation*"
-
-__unknown_file (
-
-%0*
-1*‹
-1f f(R
-P
-g g(2
-eventsjava.util.Vector"__id*"
-
-__unknown_file (
-"""(
-i i(
-
-eventsjava.util.Vector:"
-e  e()
-datejava.util.DateB(&
-$businessLogic.BLFacadeImplementationH

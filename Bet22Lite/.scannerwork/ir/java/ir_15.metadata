@@ -1,6 +1,0 @@
-dataAccess.DataAccess#storeQuote(Ljava/lang/String;Ljava/lang/Double;Ldomain/Question;)LQuote;
-null
-==
-getQuestionNumber domain.Question#getQuestionNumber()Ljava/lang/Integer;
-doesQuoteExist domain.Question#doesQuoteExist(Ljava/lang/String;)Z
-addQuote domain.Question#addQuote(Ljava/lang/Double;Ljava/lang/String;Ldomain/Question;)LQuote;
