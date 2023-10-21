@@ -1,22 +1,5 @@
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import dataAccess.DataAccessKopiatu;
-import domain.Event;
-import domain.Question;
-import domain.Quote;
-import domain.Sport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +10,22 @@ import java.util.Vector;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import dataAccess.DataAccessKopiatu;
+import domain.Event;
+import domain.Question;
+import domain.Quote;
+import domain.Sport;
+import net.bytebuddy.asm.Advice.Argument;
 
 public class GertaerakKopiatuDAWTest {
     
@@ -39,10 +38,8 @@ public class GertaerakKopiatuDAWTest {
     @InjectMocks
     public DataAccessKopiatu sut;
     
-    @Before
+    @org.junit.Before
     public void setUp() {
-    	
-        MockitoAnnotations.initMocks(this);
 		Mockito.doReturn(et).when(db).getTransaction();
 	     sut=new DataAccessKopiatu(db); 
 
@@ -82,10 +79,10 @@ public class GertaerakKopiatuDAWTest {
     	               
 		//Configurar para que devuelva mockQuery para cualquier consulta a la clase evento
         //con la llamada createQuery     
-		Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
+		Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
 		
 		//Configurar el comportamiento para que delvuelva la lista NO vacia
-		when(mockQuery.getResultList()).thenReturn(resultList);
+		Mockito.when(mockQuery.getResultList()).thenReturn(resultList);
     	      
 		//Llamada al metodo a comprobar
 		boolean result = sut.gertaerakKopiatu(event, future);
@@ -115,7 +112,7 @@ public class GertaerakKopiatuDAWTest {
     	// Crear un objeto Event
 		//creamos un evento y deporte
 		Event event = new Event(2, "Barcelona-Madrid", future, null, null);
-		Sport sport = mock(Sport.class);
+		Sport sport = Mockito.mock(Sport.class);
 		//creamos un vector Questions vacio
 		Vector<Question> vq = new Vector<Question>();
 		//a�adimos el deporte y la lista de pregutnas al evento
@@ -131,7 +128,7 @@ public class GertaerakKopiatuDAWTest {
         
         //Configurar para que devuelva mockQuery para cualquier consulta a la clase evento
         //con la llamada createQuery 
-        Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
+        Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
         
         //Configurar para que devuelva una lista vacia cuando preguntamos por la lista deel evento
         Mockito.when(mockQuery.getResultList()).thenReturn(List.of());
@@ -169,11 +166,11 @@ public class GertaerakKopiatuDAWTest {
 //    			Team Huesca = new Team("Huesca");
     	        Event event = new Event(2, "Barcelona-Madrid", future, null, null);
 //    	        Event event1 = new Event();
-    	        Sport sport = mock(Sport.class);
+    	        Sport sport = Mockito.mock(Sport.class);
     	        //creamos un vector Questions NO vacio
     	        Vector<Question> vq = new Vector<Question>();
     	        //Creamos la pregunta
-    	        Question q = mock(Question.class);
+    	        Question q = Mockito.mock(Question.class);
     	        //a�adimos al vector Question q
     	        vq.add(q);
     	        //a�adimos el deporte y la lista de pregutnas al evento
@@ -191,7 +188,7 @@ public class GertaerakKopiatuDAWTest {
         Mockito.when(db.find(Event.class, event.getEventNumber())).thenReturn(event);
         
         //Configurar el comportamiento para que delvuelva el evento creado
-        Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
+        Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
         
         //Configurar para que devuelva la question creada anteriormente
         Mockito.when(db.find(Question.class, q.getQuestionNumber())).thenReturn(q);
@@ -232,11 +229,11 @@ public class GertaerakKopiatuDAWTest {
 //    			Team Huesca = new Team("Huesca");
     	        Event event = new Event(2, "Barcelona-Madrid", future, null, null);
 //    	        Event event1 = new Event();
-    	        Sport sport = mock(Sport.class);
+    	        Sport sport = Mockito.mock(Sport.class);
     	        //creamos un vector Questions NO vacio
     	        Vector<Question> vq = new Vector<Question>();
     	        //Creamos la pregunta
-    	        Question q = mock(Question.class);
+    	        Question q = Mockito.mock(Question.class);
     	        //a�adimos al vector Question q
     	        vq.add(q);
     	        //a�adimos el deporte y la lista de pregutnas al evento
@@ -245,8 +242,8 @@ public class GertaerakKopiatuDAWTest {
     	        //Creamos un vector vacio de Quote
     	        Vector<Quote> vk = new Vector<Quote>();
     	        //creamos un par de Quotes
-    	        Quote t = mock(Quote.class);
-    	        Quote y = mock(Quote.class);
+    	        Quote t = Mockito.mock(Quote.class);
+    	        Quote y = Mockito.mock(Quote.class);
     	        //A�adimos al vector de Quotes las Quotes creadas
     	        vk.add(t);
     	        vk.add(y);
@@ -259,7 +256,7 @@ public class GertaerakKopiatuDAWTest {
         Mockito.when(db.find(Event.class, event.getEventNumber())).thenReturn(event);
         
         //Configurar el comportamiento para que delvuelva el evento creado
-        Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
+        Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
         
         //Configurar para que devuelva la pregunta creada anteriormente
         Mockito.when(db.find(Question.class, q.getQuestionNumber())).thenReturn(q);

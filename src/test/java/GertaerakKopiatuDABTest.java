@@ -1,25 +1,32 @@
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import dataAccess.DataAccessKopiatu;
-import domain.Event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import dataAccess.DataAccessKopiatu;
+import domain.Event;
+import domain.Question;
+import domain.Quote;
+import domain.Sport;
+import net.bytebuddy.asm.Advice.Argument;
 
 public class GertaerakKopiatuDABTest {
     
@@ -32,7 +39,7 @@ public class GertaerakKopiatuDABTest {
     protected  EntityTransaction  et;
 	
     @InjectMocks
-    DataAccessKopiatu sut = mock(DataAccessKopiatu.class);
+    DataAccessKopiatu sut = Mockito.mock(DataAccessKopiatu.class);
 
     
 
@@ -47,7 +54,7 @@ public class GertaerakKopiatuDABTest {
     @Test 
     public void testGertaerakKopiatu_test0() {
     	    
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
 
     	// Configurar el mock de Date para devolver una fecha en formato valido
     	//Date fechaActualMock = mock(Date.class);
@@ -72,7 +79,7 @@ public class GertaerakKopiatuDABTest {
     @Test 
     public void testGertaerakKopiatu_test1() {
     	    
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
 
     	// Configurar el mock de Date para devolver una fecha en formato valido
     	//Date fechaActualMock = mock(Date.class);
@@ -100,7 +107,7 @@ public class GertaerakKopiatuDABTest {
     public void testGertaerakKopiatu_test2() {
     	   
 
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
 
     	// Configurar el mock de Date para devolver una fecha en formato valido
 //        Date fechaActualMock = mock(Date.class);
@@ -148,7 +155,7 @@ public class GertaerakKopiatuDABTest {
 		Mockito.doReturn(et).when(db).getTransaction();
 	     sut=new DataAccessKopiatu(db);
     	
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
 
     	// Configurar el mock de Date para devolver una fecha en formato valido
     	//Date fechaActualMock = mock(Date.class);

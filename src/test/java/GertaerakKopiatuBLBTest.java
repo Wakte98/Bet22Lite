@@ -1,31 +1,41 @@
 import static org.junit.Assert.*;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import businessLogic.BLFacadeImplementation;
-import dataAccess.DataAccessKopiatu;
-import domain.Event;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import businessLogic.BLFacadeImplementation;
+import dataAccess.DataAccessKopiatu;
+import domain.Event;
+import domain.Question;
+import domain.Quote;
+import domain.Sport;
+import net.bytebuddy.asm.Advice.Argument;
 
 import javax.persistence.EntityTransaction;
 
 public class GertaerakKopiatuBLBTest {
     
 	@Mock
-	DataAccessKopiatu db = mock(DataAccessKopiatu.class);
+	DataAccessKopiatu db = Mockito.mock(DataAccessKopiatu.class);
 	//BLFacadeImplementation blf = new BLFacadeImplementation();
-	BLFacadeImplementation blf = mock(BLFacadeImplementation.class);
+	BLFacadeImplementation blf = Mockito.mock(BLFacadeImplementation.class);
 	
 	@Mock
     protected  EntityTransaction  et;
@@ -43,7 +53,7 @@ public class GertaerakKopiatuBLBTest {
     @Test 
     public void testGertaerakKopiatu_test0() {
     	    
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
 
     	// Configurar el mock de Date para devolver una fecha en formato valido
     	//Date fechaActualMock = mock(Date.class);
@@ -55,7 +65,6 @@ public class GertaerakKopiatuBLBTest {
 			e1.printStackTrace();
 		}
 
-        // Llamar al método con el mock de Date
         boolean resultado = blf.gertaerakKopiatu(event, fecha);
         //System.out.println(resultado);
 
@@ -68,7 +77,7 @@ public class GertaerakKopiatuBLBTest {
     @Test 
     public void testGertaerakKopiatu_test1() {
     	    
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
 
     	// Configurar el mock de Date para devolver una fecha valida
 //        Date fechaActualMock = mock(Date.class);
@@ -83,7 +92,6 @@ public class GertaerakKopiatuBLBTest {
 		Mockito.when(blf.gertaerakKopiatu(event, fecha)).thenReturn(true);
 		System.out.println("3");
 
-        // Llamar al método con el mock de Date
         boolean resultado = blf.gertaerakKopiatu(event, fecha);
         System.out.println(resultado);
 
@@ -98,7 +106,7 @@ public class GertaerakKopiatuBLBTest {
     public void testGertaerakKopiatu_test2() {
     	   
 
-    	Event event = mock(Event.class);
+    	Event event = Mockito.mock(Event.class);
     	System.out.println("1");
     	// Configurar el mock de Date para devolver una formato valido
 //        Date fechaActualMock = mock(Date.class);
@@ -114,7 +122,6 @@ public class GertaerakKopiatuBLBTest {
 		Mockito.when(blf.gertaerakKopiatu(event, fecha)).thenReturn(true);
 		System.out.println("3");
 
-        // Llamar al método con el mock de Date
         boolean resultado = blf.gertaerakKopiatu(event, fecha);
         System.out.println("4");
         System.out.println(resultado);
@@ -123,23 +130,6 @@ public class GertaerakKopiatuBLBTest {
         assertTrue(resultado);
     }
     
-    /**
-     * EN NINGUNO DE LOS TEST SE COMPRUEBA NADA PORQUE NUNCA SE COMPRUEVA SI LA FECHA ES VALIDA, 
-     * SINO QUE DA TRUE OR FALSE DEPENDIENDO SI ENTRA EN EL PRIMER IF DEBIDO HA SI HAY 
-     * UNA DESCRIPCION EN EL EVENTO. COMO ESTAMOS EN CAJA NEGRA, NO SABEMOS LOS PAREMETROS 
-     * DEL EVENTO Y NO PODEMOS CREAR UN EVENTO ACORDE A SI ENTRA O NO EN EL IF PARA QUE SE 
-     * VALIDE LA CONDICION
-     */
-    
-    /**
-     * PASA LO MISMO CON LA CLASE EVENTO.CLASS. AUNQUE PASEMOS UN EVENTO CREADO CON MOCKITO,
-     * NO SABEMOS LOS PARAMETROS DEL EVENTO QUE NECESITAMOS PARA HACER QUE EL METODO FUNCIONE.
-     * POR QEJEMPLO, COMO HACEMOS PARA CREAR QUESTIONS Y QUERYS DE UN EVENTO SI NO SABEMOS COMO
-     * SE CREEAN(ESTAMOS EN CJA NEGRA). SIEMPRE SERA FALSE, PQ AUNQ AÑADAMOS EL EVENTO A LA BD, 
-     * NOS PIDE UNA DESCRIPCION PARA QUE "query.setParameter(1,gertaera.getDescription()); Y
-		query.setParameter(2, date); FUNCIONE Y NO SE QUEDE PARADO EL METODO Y DE FALSO"
-     */
-  
         
     
 
