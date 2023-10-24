@@ -1,32 +1,29 @@
 import static org.junit.Assert.*;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import dataAccess.DataAccessKopiatu;
+import domain.Event;
+import domain.Question;
+import domain.Quote;
+import domain.Sport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import dataAccess.DataAccessKopiatu;
-import domain.Event;
-import domain.Question;
-import domain.Quote;
-import domain.Sport;
-import net.bytebuddy.asm.Advice.Argument;
-
 public class GertaerakKopiatuDAWTest {
     
 	@Mock
@@ -38,11 +35,12 @@ public class GertaerakKopiatuDAWTest {
     @InjectMocks
     public DataAccessKopiatu sut;
     
-    @org.junit.Before
+    @Before
     public void setUp() {
+    	
+        MockitoAnnotations.initMocks(this);
 		Mockito.doReturn(et).when(db).getTransaction();
-	     sut=new DataAccessKopiatu(db); 
-
+	     sut=new DataAccessKopiatu(db);
     }
     /**
      * PARA COMPROBAR LOS TEST DE LAS LISTAS VACIAS DE LOS BUCLES FOR:
@@ -51,7 +49,7 @@ public class GertaerakKopiatuDAWTest {
      */
     
     
-    //Este test comprueba que si la lista NO esta vacia, NO entra en el IF y acaba el metodo
+    //Este test comprueba que si la lista NO esta vacía, NO entra en el IF y acaba el metodo
     @Test 
     public void testGertaerakKopiatu_test1() {
     	
@@ -62,15 +60,14 @@ public class GertaerakKopiatuDAWTest {
 		try {
 			future = sdf.parse("2024-10-15");
 		} catch (ParseException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 		//Creamos un evento
-		Event event = new Event(2, "Barcelona-Madrid", future, null, null);
+		Event event = new Event(2, "Barça-Madrid", future, null, null);
 		// creamos una lista
 		List<Event> resultList = new ArrayList<>();
-		// Agregar elementos a resultList para simular una lista NO vacï¿½a
+		// Agregar elementos a resultList para simular una lista NO vacía
 		resultList.add(new Event());
-
 		// Mock de la consulta
 		TypedQuery<Event> mockQuery = Mockito.mock(TypedQuery.class);
     	      
@@ -79,14 +76,13 @@ public class GertaerakKopiatuDAWTest {
     	               
 		//Configurar para que devuelva mockQuery para cualquier consulta a la clase evento
         //con la llamada createQuery     
-		Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
+		Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
 		
 		//Configurar el comportamiento para que delvuelva la lista NO vacia
-		Mockito.when(mockQuery.getResultList()).thenReturn(resultList);
+		when(mockQuery.getResultList()).thenReturn(resultList);
     	      
 		//Llamada al metodo a comprobar
 		boolean result = sut.gertaerakKopiatu(event, future);
-
 		//Comprobamos que devuelve false si no accede el array de la consulta esta vacio
 		assertFalse(result);     
     	
@@ -110,36 +106,33 @@ public class GertaerakKopiatuDAWTest {
 		}
     	
     	// Crear un objeto Event
-		//creamos un evento y deporte
-		Event event = new Event(2, "Barcelona-Madrid", future, null, null);
-		Sport sport = Mockito.mock(Sport.class);
-		//creamos un vector Questions vacio
-		Vector<Question> vq = new Vector<Question>();
-		//aï¿½adimos el deporte y la lista de pregutnas al evento
-        event.setSport(sport);
-        event.setQuestions(vq);
-
+				//creamos un evento y deporte
+    	        Event event = new Event(2, "Barça-Madrid", future, null, null);
+    	        Sport sport = mock(Sport.class);
+    	        //creamos un vector Questions vacio
+    	        Vector<Question> vq = new Vector<Question>();
+    	        //añadimos el deporte y la lista de pregutnas al evento
+    	        event.setSport(sport);
+    	        event.setQuestions(vq);
    	        
         // Mock de la consulta
         TypedQuery<Event> mockQuery = Mockito.mock(TypedQuery.class);
-
         // Configurar el comportamiento del mockDb
         Mockito.when(db.find(Event.class, event.getEventNumber())).thenReturn(event);
         
         //Configurar para que devuelva mockQuery para cualquier consulta a la clase evento
         //con la llamada createQuery 
-        Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
+        Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
         
         //Configurar para que devuelva una lista vacia cuando preguntamos por la lista deel evento
         Mockito.when(mockQuery.getResultList()).thenReturn(List.of());
-
-        // Instanciar la clase que contiene el mï¿½todo 
+        // Instanciar la clase que contiene el método 
         DataAccessKopiatu sut = new DataAccessKopiatu(db);
         
-        // Llamar al mï¿½todo que queremos probar
+        // Llamar al método que queremos probar
         boolean result = sut.gertaerakKopiatu(event, future);
   
-        // Verificar que el mï¿½todo retorna true si date > hoy
+        // Verificar que el método retorna true si date > hoy
         assertTrue(result);
         
     }
@@ -164,23 +157,22 @@ public class GertaerakKopiatuDAWTest {
     	// Crear un objeto Event
 //    			Team Zgz = new Team("Zaragoza");
 //    			Team Huesca = new Team("Huesca");
-    	        Event event = new Event(2, "Barcelona-Madrid", future, null, null);
+    	        Event event = new Event(2, "Barça-Madrid", future, null, null);
 //    	        Event event1 = new Event();
-    	        Sport sport = Mockito.mock(Sport.class);
+    	        Sport sport = mock(Sport.class);
     	        //creamos un vector Questions NO vacio
     	        Vector<Question> vq = new Vector<Question>();
     	        //Creamos la pregunta
-    	        Question q = Mockito.mock(Question.class);
-    	        //aï¿½adimos al vector Question q
+    	        Question q = mock(Question.class);
+    	        //añadimos al vector Question q
     	        vq.add(q);
-    	        //aï¿½adimos el deporte y la lista de pregutnas al evento
+    	        //añadimos el deporte y la lista de pregutnas al evento
     	        event.setSport(sport);
     	        event.setQuestions(vq);
     	        //Creamos un vector vacio de Quote
     	        Vector<Quote> vk = new Vector<Quote>();
     	        
  
-
         // Mock de la consulta
         TypedQuery<Event> mockQuery = Mockito.mock(TypedQuery.class);
       
@@ -188,7 +180,7 @@ public class GertaerakKopiatuDAWTest {
         Mockito.when(db.find(Event.class, event.getEventNumber())).thenReturn(event);
         
         //Configurar el comportamiento para que delvuelva el evento creado
-        Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
+        Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
         
         //Configurar para que devuelva la question creada anteriormente
         Mockito.when(db.find(Question.class, q.getQuestionNumber())).thenReturn(q);
@@ -196,13 +188,13 @@ public class GertaerakKopiatuDAWTest {
         //Configurar para que devuelva un vector con quotes creado anteriormente(vk SI vacio)
         Mockito.when(q.getQuotes()).thenReturn(vk);
         
-        // Instanciar la clase que contiene el mï¿½todo 
+        // Instanciar la clase que contiene el método 
         DataAccessKopiatu sut = new DataAccessKopiatu(db);
         
-        // Llamar al mï¿½todo que queremos probar
+        // Llamar al método que queremos probar
         boolean result = sut.gertaerakKopiatu(event, future);
        
-        // Verificar que el mï¿½todo retorna true por lo que se copia correctamente el evento
+        // Verificar que el método retorna true por lo que se copia correctamente el evento
         assertTrue(result);
         
     }
@@ -227,28 +219,27 @@ public class GertaerakKopiatuDAWTest {
     	// Crear un objeto Event
 //    			Team Zgz = new Team("Zaragoza");
 //    			Team Huesca = new Team("Huesca");
-    	        Event event = new Event(2, "Barcelona-Madrid", future, null, null);
+    	        Event event = new Event(2, "Barça-Madrid", future, null, null);
 //    	        Event event1 = new Event();
-    	        Sport sport = Mockito.mock(Sport.class);
+    	        Sport sport = mock(Sport.class);
     	        //creamos un vector Questions NO vacio
     	        Vector<Question> vq = new Vector<Question>();
     	        //Creamos la pregunta
-    	        Question q = Mockito.mock(Question.class);
-    	        //aï¿½adimos al vector Question q
+    	        Question q = mock(Question.class);
+    	        //añadimos al vector Question q
     	        vq.add(q);
-    	        //aï¿½adimos el deporte y la lista de pregutnas al evento
+    	        //añadimos el deporte y la lista de pregutnas al evento
     	        event.setSport(sport);
     	        event.setQuestions(vq);
     	        //Creamos un vector vacio de Quote
     	        Vector<Quote> vk = new Vector<Quote>();
     	        //creamos un par de Quotes
-    	        Quote t = Mockito.mock(Quote.class);
-    	        Quote y = Mockito.mock(Quote.class);
-    	        //Aï¿½adimos al vector de Quotes las Quotes creadas
+    	        Quote t = mock(Quote.class);
+    	        Quote y = mock(Quote.class);
+    	        //Añadimos al vector de Quotes las Quotes creadas
     	        vk.add(t);
     	        vk.add(y);
  
-
         // Mock de la consulta
         TypedQuery<Event> mockQuery = Mockito.mock(TypedQuery.class);
       
@@ -256,7 +247,7 @@ public class GertaerakKopiatuDAWTest {
         Mockito.when(db.find(Event.class, event.getEventNumber())).thenReturn(event);
         
         //Configurar el comportamiento para que delvuelva el evento creado
-        Mockito.doReturn(mockQuery).when(db).createQuery(Mockito.anyString(), ArgumentMatchers.eq(Event.class));
+        Mockito.doReturn(mockQuery).when(db).createQuery(anyString(), eq(Event.class));
         
         //Configurar para que devuelva la pregunta creada anteriormente
         Mockito.when(db.find(Question.class, q.getQuestionNumber())).thenReturn(q);
@@ -264,19 +255,16 @@ public class GertaerakKopiatuDAWTest {
         //Configurar para que devuelva un vector con quotes NO vacio creado anteriormente
         Mockito.when(q.getQuotes()).thenReturn(vk);
         
-        // Instanciar la clase que contiene el mï¿½todo
+        // Instanciar la clase que contiene el método
         DataAccessKopiatu sut = new DataAccessKopiatu(db);
         
-        // Llamar al mï¿½todo que queremos probar
+        // Llamar al método que queremos probar
         boolean result = sut.gertaerakKopiatu(event, future);
        
-        // Verificar que el mï¿½todo retorna true por lo que se copia correctamente el evento
+        // Verificar que el método retorna true por lo que se copia correctamente el evento
         assertTrue(result);
         
     }
      
-}  	
-
-
-
+} 
 
