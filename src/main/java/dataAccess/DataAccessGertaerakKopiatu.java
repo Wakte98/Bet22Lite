@@ -605,7 +605,6 @@ public class DataAccessGertaerakKopiatu  {
 			System.out.println("Db initialized");
 		}
 		catch (Exception e){
-			e.printStackTrace();
 		}
 	}
 
