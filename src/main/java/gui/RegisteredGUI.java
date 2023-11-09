@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-import adapter.WindowTable;
 import businessLogic.BLFacade;
 import domain.Event;
 import domain.Registered;
