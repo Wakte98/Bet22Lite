@@ -1,1 +1,6 @@
+/gui/
 /META-INF/
+/domain/
+/businessLogic/
+/dataAccess/
+/adapter/

@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
+import adapter.WindowTable;
 import businessLogic.BLFacade;
 import domain.Event;
 import domain.Registered;
@@ -53,6 +54,9 @@ public class RegisteredGUI extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnRank;
 	private JButton btnDestacados;
+	
+	private JButton btnAPuestasRealizadas;
+
 	
 	/**
 	 * This is the default constructor
@@ -111,6 +115,8 @@ public class RegisteredGUI extends JFrame {
 			jContentPane.add(getJButtonDesLogin());
 			jContentPane.add(getBtnRank());
 			jContentPane.add(getBtnDestacados());
+			jContentPane.add(getBtnApuestasRealizadas());
+
 		}
 		return jContentPane;
 	}
@@ -274,6 +280,22 @@ public class RegisteredGUI extends JFrame {
 			btnDestacados.setBounds(327, 391, 299, 68);
 		}
 		return btnDestacados;
+	}
+	private JButton getBtnApuestasRealizadas() {
+		if (btnAPuestasRealizadas == null) {
+			btnAPuestasRealizadas = new JButton(ResourceBundle.getBundle("Etiquetas").getString("APREALIZADAS")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnAPuestasRealizadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btnAPuestasRealizadas.setForeground(Color.DARK_GRAY);
+			btnAPuestasRealizadas.setBackground(Color.PINK);
+			btnAPuestasRealizadas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					WindowTable vt = new WindowTable(user);
+					vt.setVisible(true);
+				}
+			});
+			btnAPuestasRealizadas.setBounds(10, 391, 282, 68);
+		}
+		return btnAPuestasRealizadas;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
