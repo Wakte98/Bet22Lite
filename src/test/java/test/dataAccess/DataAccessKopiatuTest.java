@@ -17,13 +17,13 @@ import domain.Quote;
 import domain.Sport;
 import domain.Team;
 
-public class TestDataAccessKopiatu {
+public class DataAccessKopiatuTest {
 	protected EntityManager db;
 	protected EntityManagerFactory emf;
 
 	ConfigXML c = ConfigXML.getInstance();
 
-	public TestDataAccessKopiatu() { 
+	public DataAccessKopiatuTest() { 
 
 		System.out.println("Creating TestDataAccess instance");
 

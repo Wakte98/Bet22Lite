@@ -27,7 +27,7 @@ import domain.Question;
 import domain.Quote;
 import domain.Sport;
 import net.bytebuddy.asm.Advice.Argument;
-import test.dataAccess.TestDataAccessKopiatu;
+import test.dataAccess.DataAccessKopiatuTest;
 
 public class GertaerakKopiatuDABTest {
     
@@ -40,7 +40,7 @@ public class GertaerakKopiatuDABTest {
     protected  EntityTransaction  et;
 	
     @InjectMocks
-    TestDataAccessKopiatu sut = Mockito.mock(TestDataAccessKopiatu.class);
+    DataAccessKopiatuTest sut = Mockito.mock(DataAccessKopiatuTest.class);
 
     
 
@@ -154,7 +154,7 @@ public class GertaerakKopiatuDABTest {
     	   
     	MockitoAnnotations.initMocks(this);
 		Mockito.doReturn(et).when(db).getTransaction();
-	     sut=new TestDataAccessKopiatu();
+	     sut=new DataAccessKopiatuTest();
     	
     	Event event = Mockito.mock(Event.class);
 
