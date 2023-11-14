@@ -3,6 +3,8 @@ package gui;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.objenesis.tck.search.SystemOutListener;
+
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import domain.Event;
@@ -16,9 +18,10 @@ public class IteratorMain {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date date;
 		try {
+			System.out.println("chck 1");
 			date = sdf.parse("17/12/2023"); // 17 del mes que viene
-			java.sql.Date sqlDate = java.sql.Date.valueOf(sdf.toString());
-			ExtendedIterator<Event> i = blFacade.getEventsIterator(sqlDate);
+			//java.sql.Date sqlDate = java.sql.Date.valueOf("17/12/2023");
+			ExtendedIterator<Event> i = blFacade.getEventsIterator(date);
 			Event e;
 			System.out.println("_____________________");
 			System.out.println("RECORRIDO	HACIA	ATRAS");
