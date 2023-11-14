@@ -14,6 +14,7 @@ import dataAccess.DataAccess;
 import domain.ApustuAnitza;
 import domain.Apustua;
 import domain.Event;
+import domain.ExtendedIterator;
 import domain.Question;
 import domain.Quote;
 import domain.Registered;
@@ -104,6 +105,15 @@ public class BLFacadeImplementation  implements BLFacade {
 		Vector<Event>  events=dbManager.getEvents(date);
 		dbManager.close();
 		return events;
+	}
+    
+
+	@WebMethod
+	public ExtendedIterator<Event> getEventsIterator(Date date) {
+		dbManager.open(false);
+		Vector<Event> events=dbManager.getEvents(date);
+		dbManager.close();
+		//return new ExtendedIterator<Event>(events);
 	}
 
     
@@ -375,5 +385,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return team;
 	}
+
 }
 

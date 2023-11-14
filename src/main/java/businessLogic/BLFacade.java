@@ -11,6 +11,7 @@ import javax.jws.WebService;
 import domain.ApustuAnitza;
 import domain.Apustua;
 import domain.Event;
+import domain.ExtendedIterator;
 //import domain.Booking;
 import domain.Question;
 import domain.Quote;
@@ -51,6 +52,15 @@ public interface BLFacade  {
 	 * @return collection of events
 	 */
 	@WebMethod public Vector<Event> getEvents(Date date);
+	
+	/**
+	 * This method teturns an iterable collection eof events of a given date
+	 * 
+	 * @author Josus009
+	 * @param date in which events are retrieved
+	 * @return ExtendedIterator of Events
+	 */
+	@WebMethod public ExtendedIterator<Event> getEventsIterator(Date date);
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
@@ -130,4 +140,5 @@ public interface BLFacade  {
 	@WebMethod public Team findTeam(Registered u);
 	
 	@WebMethod public Sport findSport(Event q);
+	
 }
