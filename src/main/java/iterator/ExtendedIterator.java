@@ -1,4 +1,4 @@
-package domain;
+package iterator;
 
 import java.util.Iterator;
 

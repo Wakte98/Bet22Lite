@@ -149,6 +149,9 @@ public class FindQuestionsGUI extends JFrame {
 						BLFacade facade=MainGUI.getBusinessLogic();
 
 						Vector<domain.Event> events=facade.getEvents(firstDay);
+						
+						iterator.ExtendedIterator<domain.Event> evs;
+						evs = facade.getEventsIterator(firstDay);
 
 						if (events.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarAct.getTime()));
 						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarAct.getTime()));

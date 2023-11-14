@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Color;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import javax.swing.UIManager;
@@ -12,13 +14,15 @@ import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
+import domain.Event;
+import iterator.ExtendedIterator;
 
 public class ApplicationLauncher { 
 	
 	
 	
 	public static void main(String[] args) {
-
+		
 		ConfigXML c=ConfigXML.getInstance();
 	
 		System.out.println(c.getLocale());
@@ -50,7 +54,6 @@ public class ApplicationLauncher {
 
 				DataAccess da= new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 				appFacadeInterface=new BLFacadeImplementation(da);
-
 				
 			}
 			
@@ -76,8 +79,6 @@ public class ApplicationLauncher {
 				*/
 			MainGUI.setBussinessLogic(appFacadeInterface);
 
-		
-
 			
 		}catch (Exception e) {
 			a.jLabelSelectOption.setText("Error: "+e.toString());
@@ -86,8 +87,6 @@ public class ApplicationLauncher {
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
 		}
 		//a.pack();
-
-
 	}
 
 }

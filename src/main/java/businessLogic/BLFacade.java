@@ -11,7 +11,6 @@ import javax.jws.WebService;
 import domain.ApustuAnitza;
 import domain.Apustua;
 import domain.Event;
-import domain.ExtendedIterator;
 //import domain.Booking;
 import domain.Question;
 import domain.Quote;
@@ -24,6 +23,7 @@ import exceptions.EventFinished;
 import exceptions.EventNotFinished;
 import exceptions.QuestionAlreadyExist;
 import exceptions.QuoteAlreadyExist;
+import iterator.ExtendedIterator;
 
 /**
  * Interface that specifies the business logic.
