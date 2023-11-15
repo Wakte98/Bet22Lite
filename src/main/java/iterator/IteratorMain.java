@@ -1,26 +1,20 @@
-package gui;
+package iterator;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.objenesis.tck.search.SystemOutListener;
-
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import domain.Event;
-import iterator.ExtendedIterator;
 
 public class IteratorMain {
 
 	public static void main(String[] args) {
-		int isLocal = 1;
 		BLFacade blFacade = new BLFacadeImplementation();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date date;
 		try {
-			System.out.println("chck 1");
 			date = sdf.parse("17/12/2023"); // 17 del mes que viene
-			//java.sql.Date sqlDate = java.sql.Date.valueOf("17/12/2023");
 			ExtendedIterator<Event> i = blFacade.getEventsIterator(date);
 			Event e;
 			System.out.println("_____________________");

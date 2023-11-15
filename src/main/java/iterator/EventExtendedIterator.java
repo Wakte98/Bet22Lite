@@ -18,7 +18,7 @@ public class EventExtendedIterator implements ExtendedIterator<Event>{
 
 	@Override
 	public boolean hasNext() {
-		return position<lastIndex-1;
+		return position<lastIndex;
 	}
 
 	@Override

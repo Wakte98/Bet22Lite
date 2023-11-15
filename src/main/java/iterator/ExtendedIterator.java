@@ -2,10 +2,10 @@ package iterator;
 
 import java.util.Iterator;
 
-public interface ExtendedIterator<Object> extends Iterator<Object> {
+public interface ExtendedIterator<T> extends Iterator<T> {
 
 	//return	the	actual	element	and	go	to	the	previous
-	public Object	previous();
+	public T	previous();
 	
 	//true	if there	is	a	previous	element
 	public boolean hasPrevious();

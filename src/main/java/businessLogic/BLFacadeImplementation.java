@@ -1,8 +1,6 @@
 package businessLogic;
 import java.util.Collection;
-//hola
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -10,6 +8,7 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import aggregate.EventVectorAggregate;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.ApustuAnitza;
@@ -26,7 +25,6 @@ import exceptions.EventFinished;
 import exceptions.EventNotFinished;
 import exceptions.QuestionAlreadyExist;
 import exceptions.QuoteAlreadyExist;
-import iterator.EventExtendedIterator;
 import iterator.ExtendedIterator;
 
 /**
@@ -115,7 +113,8 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.open(false);
 		Vector<Event> events=dbManager.getEvents(date);
 		dbManager.close();
-		return new EventExtendedIterator(events);
+		EventVectorAggregate p=new EventVectorAggregate(events);
+		return p.createIterator();
 	}
 
     
